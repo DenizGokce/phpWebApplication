@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('person.list');
 });
 
 Route::resource('person','PersonController');

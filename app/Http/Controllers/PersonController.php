@@ -24,7 +24,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        return view('Person/person.create');
+        return view('person.create');
     }
 
     /**
