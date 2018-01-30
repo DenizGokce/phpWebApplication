@@ -1,5 +1,5 @@
 @extends('master')
 
 @section('content')
-    list
+    delete
 @endsection

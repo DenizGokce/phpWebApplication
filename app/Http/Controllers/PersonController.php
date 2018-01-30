@@ -61,12 +61,11 @@ class PersonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+       return view('person.edit');
     }
 
     /**
@@ -80,7 +79,16 @@ class PersonController extends Controller
     {
         //
     }
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete()
+    {
+        return view('person.delete');
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -1,0 +1,10 @@
+.menu-top {
+    padding-top: 60px !important;
+}
+
+.loader-active{
+    display: block;
+}
+.loader-inactive{
+    display: none;
+}
