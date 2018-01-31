@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('person.list');
+    return redirect('person');
 });
+//Custom Routes Different then Laravel Controller's Default Routes
+Route::get('person/create', 'PersonController@create');
+Route::get('person/edit', 'PersonController@edit');
+Route::get('person/delete', 'PersonController@delete');
 
-Route::resource('person','PersonController');
+Route::resource('person', 'PersonController');

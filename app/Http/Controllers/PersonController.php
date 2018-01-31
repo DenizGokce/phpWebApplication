@@ -14,7 +14,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $people = Person::all()->toArray();
+        return view('person.index', compact('people'));
     }
 
     /**
@@ -24,6 +25,7 @@ class PersonController extends Controller
      */
     public function create()
     {
+        echo "<script>console.log( 'create Çalışıyor' );</script>";
         return view('person.create');
     }
 
@@ -65,7 +67,8 @@ class PersonController extends Controller
      */
     public function edit()
     {
-       return view('person.edit');
+        echo "<script>console.log( 'edit Çalışıyor' );</script>";
+        return view('person.edit');
     }
 
     /**
@@ -79,6 +82,7 @@ class PersonController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -89,6 +93,7 @@ class PersonController extends Controller
     {
         return view('person.delete');
     }
+
     /**
      * Remove the specified resource from storage.
      *
