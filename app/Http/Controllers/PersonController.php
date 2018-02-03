@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Person;
 
@@ -25,7 +26,6 @@ class PersonController extends Controller
      */
     public function create()
     {
-        echo "<script>console.log( 'create Çalışıyor' );</script>";
         return view('person.create');
     }
 
@@ -37,16 +37,14 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'firstname' => 'required',
-            'lastname' => 'required'
+        $person = (object)$request->json()->all();
+        $newPerson = new Person([
+            'firstname' => $person->firstname,
+            'lastname' => $person->lastname
         ]);
-        $person = new Person([
-            'firstname' => $request->get('firstname'),
-            'lastname' => $request->get('lastname')
-        ]);
-        $person->save();
-        return redirect()->route('person.create')->with('success', 'Data Added!');
+        $newPerson->save();
+        //return redirect()->route('person.index')->with('success', 'Data Added!');
+        return response()->json(json_encode($newPerson));
     }
 
     /**
@@ -57,7 +55,8 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        //
+        $person = Person::find($id);
+        return response()->json(json_encode($person));
     }
 
     /**
@@ -65,10 +64,11 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function edit()
     {
-        echo "<script>console.log( 'edit Çalışıyor' );</script>";
-        return view('person.edit');
+        $people = Person::all()->toArray();
+        return view('person.edit', compact('people'));
     }
 
     /**
@@ -78,9 +78,14 @@ class PersonController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $person = (object)$request->json()->all();
+        $existPerson = Person::find($person->id);
+        $existPerson->firstname = $person->firstnam;
+        $existPerson->lastname = $person->lastname;
+        $existPerson->save();
+        return response()->json(json_encode($existPerson));
     }
 
     /**
@@ -91,7 +96,8 @@ class PersonController extends Controller
      */
     public function delete()
     {
-        return view('person.delete');
+        $people = Person::all()->toArray();
+        return view('person.delete', compact('people'));
     }
 
     /**
@@ -102,6 +108,9 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $existPerson = Person::find($id);
+        Person::destroy($id);
+        return response()->json(json_encode($existPerson));
     }
+
 }

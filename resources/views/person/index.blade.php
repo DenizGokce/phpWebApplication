@@ -5,7 +5,20 @@
         <h1 class="text-danger text-center">People</h1>
         <hr/>
         <div class="row">
-
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{$message}}</p>
+                </div>
+            @endif
             <div class="col-md-9 col-md-offset-1">
                 <br/>
                 <br/>
