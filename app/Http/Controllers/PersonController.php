@@ -82,7 +82,7 @@ class PersonController extends Controller
     {
         $person = (object)$request->json()->all();
         $existPerson = Person::find($person->id);
-        $existPerson->firstname = $person->firstnam;
+        $existPerson->firstname = $person->firstname;
         $existPerson->lastname = $person->lastname;
         $existPerson->save();
         return response()->json(json_encode($existPerson));
