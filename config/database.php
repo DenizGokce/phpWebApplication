@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+        'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,10 +41,10 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'mysqldb.cq8kvapymh0i.eu-central-1.rds.amazonaws.com'),
-            'port' => env('DB_PORT', '3303'),
-            'database' => env('DB_DATABASE', 'phpdb'),
-            'username' => env('DB_USERNAME', 'denizgokce'),
+            'host' => env('DB_HOST', 'phpdb.mysql.database.azure.com'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'laravel'),
+            'username' => env('DB_USERNAME', 'denizgokce@phpdb'),
             'password' => env('DB_PASSWORD', 'Deniz1993.'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
